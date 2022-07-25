@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+
+
+<html>
+    <head>
+        <title>
+            Python Button Script
+        </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <form action="/external" method="post"> 
+            {% csrf_token %}
+            Enter the Radius:
+            <input type="number" name="radius" required><br><br>
+            Enter the Latitude:
+            <input type="number" name="latitude" step="any" required><br><br>
+            Enter the Longitude:
+            <input type="number" name="longitude" step="any" required><br><br>
+            {{data_external}}<br><br>
+            <h2 style="font-family:Engravers MT;",style="color:yellow;">These are the Closest Villages in order</h2>
+            <table style="width:20%">
+                <tr>
+                  <th>Village Name</th>
+                </tr>
+                <tr>
+                    <td>
+                        <ol>{% for day in data1 %}
+                        <li>{{ day }}</li>
+                        {% endfor %} </ol>
+                    </td>
+                 
+                </tr>
+                
+            </table>
+            
+            
+            <br><br>
+            <input type="submit" value="Execute External Python Script">
+
+        </form>
+    </body>
+</html>
