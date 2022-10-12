@@ -35,7 +35,7 @@ def output():       #will render when the user clicks of execute and will give o
     data = requests.get("https://reqres.in/api/users")
     print(data.text)
     data = data.text
-    return render(request,'home.html', {'data':data})
+    return render(requests,'home.html', {'data':data})
 
 def external(request):
     rad =request.POST.get('radius')
