@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-yr^v7fq%**%t1ps+0zr%i&d*@1f0joqk=w)8(@y3%v+9jhf#zs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+ALLOWED_HOSTS = ['https://vleroute.herokuapp.com',
+'localhost',
+'127.0.0.1']
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -124,4 +126,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+STATIC_ROOT=os.join(BASE_DIR,'static')
 MEDIA_URL = 'media/'
