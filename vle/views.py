@@ -38,41 +38,46 @@ def output():       #will render when the user clicks of execute and will give o
     return render(requests,'home.html', {'data':data})
 
 def external(request):
-    rad =request.POST.get('radius')
-    lat= request.POST.get('latitude')
-    long= request.POST.get('longitude')
+    try:
+     print("Hello");
+     rad =request.POST.get('radius')
+     lat= request.POST.get('latitude')
+     long= request.POST.get('longitude')
 
-    path_excel = r"media\VillageDetails.xlsx"
-    df = pd.read_excel(path_excel)
-    Vle_coordinates = []
-    Vle_coordinates.append(float(lat))
-    Vle_coordinates.append(float(long))
+     path_excel = "media\VillageDetails.xlsx"
+     df = pd.read_excel(path_excel)
+     Vle_coordinates = []
+     Vle_coordinates.append(float(lat))
+     Vle_coordinates.append(float(long))
 
-    Village_Name = list(df["Village Name"])
-    Lats = list(df["Latitude"])
-    Longs = list(df["Longitude"])
-    Population = list(df['Village Population'])
+     Village_Name = list(df["Village Name"])
+     Lats = list(df["Latitude"])
+     Longs = list(df["Longitude"])
+     Population = list(df['Village Population'])
 
-    temp = list(zip(Lats,Longs))
-    villages= dict((key,value) for key,value in zip(Village_Name,temp))
-    distance =[]
+     temp = list(zip(Lats,Longs))
+     villages= dict((key,value) for key,value in zip(Village_Name,temp))
+     distance =[]
 
-    for key,values in villages.items():
+     for key,values in villages.items():
         d = (GD(Vle_coordinates,values).km)
         distance.append(round(d,2))
 
-    Vle_details = list(zip(Village_Name,distance,Population))
+     Vle_details = list(zip(Village_Name,distance,Population))
 
-    s = sorted(Vle_details, key = lambda x: (x[1], -x[2]))
+     s = sorted(Vle_details, key = lambda x: (x[1], -x[2]))
 
-    final = []
+     final = []
 
-    for items in s:
+     for items in s:
         if (items[1]<=float(rad)):
             final.append(items[0])
 
 
+     return render(request,'home.html',{'data1':final})
+    except Exception as e:
 
+     print(e)
+     
     
-    return render(request,'home.html',{'data1':final})
 
