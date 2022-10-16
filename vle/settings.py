@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-yr^v7fq%**%t1ps+0zr%i&d*@1f0joqk=w)8(@y3%v+9jhf#zs
 DEBUG = False
 ALLOWED_HOSTS = ['https://vleroute.herokuapp.com',
 'localhost',
-'127.0.0.1']
+'127.0.0.1','*']
 
 
 
